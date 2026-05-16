@@ -1,0 +1,72 @@
+You are an expert Frontend Engineer and UX Designer. Build a complete, ultra-fast, and responsive web application for "Ultrofix Tech Services", a premium laptop and mobile repair shop in Ahmedabad. 
+
+### 1. TECHNICAL SPECIFICATIONS
+- Architecture: Responsive Single Page Application (SPA).
+- Stack: HTML5 (Semantic), Tailwind CSS (via CDN or Vite), JavaScript (ES6+), and Framer Motion or Alpine.js for lightweight, lag-free animations.
+- Performance: Zero heavy frameworks, optimized for under 1-second load times on mobile. No lagging.
+- Typography: Inter for clean UI, Montserrat for bold headings.
+- Theme: Dark Mode Tech Aesthetic (Deep Grays `#121214`, `#1A1A1E`, Electric Blue accents `#2563EB`, and crisp white text).
+
+### 2. COMPREHENSIVE FILE STRUCTURE TO CREATE
+- `index.html` (Main application structure & SEO meta tags)
+- `styles.css` (Tailwind custom configurations, animations, and typography)
+- `app.js` (State management, interactive estimator, review slider logic, and tracking simulator)
+
+### 3. SECTION-BY-SECTION CONTENT & UI REQUIREMENTS
+
+#### A. NAVIGATION BAR
+- Desktop: Desktop sticky glassmorphism layout with Logo (Ultrofix), Links (Services, About, Reviews, Contact), and a CTA Button [Book Diagnostic].
+- Mobile: A slide-out burger menu with touch-friendly links.
+
+#### B. HERO SECTION
+- Headline: "Unlock the Full Potential of Your Laptop & PC"
+- Sub-headline: "7+ Years of Professional Experience. Specialized Chip-Level Motherboard Repair & Advanced Device Solutions in Ahmedabad."
+- Trust Badge: "⭐ 5.0 Rated on Google | 100% Verified Support"
+- CTAs: Primary button [Free Problem Diagnostic] linked to the estimator tool, and Secondary button [Get Directions] linking to their Google Maps location.
+
+#### C. INTERACTIVE REPAIR ESTIMATOR WIDGET
+- Create a functional interactive calculator component.
+- Inputs: A dropdown menu to select service category: 
+  * "Laptop System Formatting" (Est. ₹500 - ₹800)
+  * "Chip-Level Motherboard Repair" (Est. ₹2000+)
+  * "Laptop Screen Replacement" (Est. ₹2500+)
+  * "Data Recovery Service" (Est. ₹1500+)
+  * "Custom Gaming PC Build" (Est. Budget Based)
+- Output: Dynamically update and display the "Estimated Price Range" and "Repair Time Frame" instantly without screen lag.
+- Conversion: An action button under the price saying: [Book This Repair via WhatsApp] which generates a pre-filled WhatsApp link based on their selection.
+
+#### D. SERVICE EXPLORER GRID
+- A beautifully designed responsive grid layout displaying core tech offerings.
+- List out services with custom SVG icons: 
+  1. Chip-Level (Motherboard) Repair
+  2. Refurbished Laptops & Second-Hand Sales
+  3. Custom & Gaming PC Building
+  4. AMC (Annual Maintenance Contract) for Bulk Systems
+  5. iPhone & MacBook Expert Repair
+- Each card should feature smooth CSS hover scaling and an individual [Inquire Now] button.
+
+#### E. "ABOUT US" & LOCAL TARGETING MATRIX
+- Title: "Your Reliable Tech Partner"
+- Description: Use their verified copy: "We focus on quick diagnostics, transparent pricing, and customer satisfaction. Our skilled technicians use professional tools and genuine parts to ensure your device performs like new."
+- Service Area Badges: Visually highlight local coverage tags with a map pin icon: "Gota", "Chandlodia", "Jagatpur", "New Ranip", "Gota Chowkdi Flyover".
+- Stats Counter: Display bold grid highlights: [7+ Years Experience] | [21+ Services Provided] | [100% Quality Guaranteed].
+
+#### F. SOCIAL PROOF & MEDIA INTEGRATION
+- Testimonial Slider: An automated, touch-swipeable review carousel featuring real customer feedback. Add verified Google/Justdial badges (e.g., "Kaushal Mahto, Gota — 'Probably the best computer and laptop repair shop nearby the Gota area, highly recommend.'")
+- "Tech In Action" Gallery: A visual media container mimicking their dynamic Instagram Reels feed. Design a 3-card vertical/asymmetric placeholder grid showing active bench repairs with play-overlay hover transitions.
+
+#### G. FLOATING MOBILE "SPEED-TO-SOLUTION" BAR
+- For viewports below 768px, implement a bottom-fixed, high-contrast action bar with quick links:
+  * [Call Support] linking to `tel:+917878433566`
+  * [WhatsApp Chat] linking to `https://wa.me/917878433566`
+  * [Find Shop] opening native maps.
+
+#### H. FOOTER & BUSINESS DATA
+- Fix the placeholder typo: ensure email links properly to `Ultrofixtechservices@gmail.com`.
+- List clean click-to-call hyperlinks for both shop numbers: `+917878433566` and `+918400025112`.
+- Address text block: "Shop FF 110, Shaligram Square, behind Olive Greens, near Gota Chokdi Flyover, Gota, Ahmedabad, Gujarat 382481".
+
+### 4. LOCAL SEO SCHEMA (JSON-LD)
+- Inject a valid LocalBusiness JSON-LD schema into the `index.html` head detailing the exact shop coordinates, repair service categories, telephone arrays, and GeoCoordinates for Gota, Ahmedabad to guarantee high search ranking placement.
+
+Generate all necessary production code blocks complete, avoiding unwritten loops or placeholder comments so this can be launched cleanly on Replit.
