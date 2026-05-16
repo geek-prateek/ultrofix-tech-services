@@ -2,14 +2,12 @@ import { useState, useEffect } from "react";
 import { Menu, X, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import logoImg from "@assets/Logo_1778906496305.png";
+import logoImg from "@assets/Logo-removebg-preview_1778909529329.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Reviews", href: "/#reviews" },
-  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -23,20 +21,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setMenuOpen(false);
-    if (href.startsWith("/#")) {
-      const id = href.replace("/#", "");
-      if (location === "/") {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        window.location.href = href;
-      }
-      return;
-    }
-  };
-
-  const handleEstimatorClick = () => {
+  const handleDiagnosticClick = () => {
     setMenuOpen(false);
     if (location === "/") {
       document.getElementById("estimator")?.scrollIntoView({ behavior: "smooth" });
@@ -54,8 +39,8 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group" data-testid="navbar-logo">
-              <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center bg-transparent">
+            <Link href="/" className="flex items-center gap-2.5" data-testid="navbar-logo">
+              <div className="w-9 h-9 flex items-center justify-center">
                 <img src={logoImg} alt="Ultrofix Logo" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col leading-none">
@@ -71,17 +56,8 @@ export default function Navbar() {
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-7">
               {navLinks.map((link) => {
-                const isActive = link.href === location || (link.href !== "/" && location.startsWith(link.href.split("#")[0]));
-                return link.href.startsWith("/#") ? (
-                  <button
-                    key={link.href}
-                    onClick={() => handleNavClick(link.href)}
-                    className={`text-sm font-medium transition-colors duration-200 cursor-pointer ${isActive ? "text-white" : "text-zinc-400 hover:text-white"}`}
-                    data-testid={`nav-link-${link.label.toLowerCase()}`}
-                  >
-                    {link.label}
-                  </button>
-                ) : (
+                const isActive = link.href === "/" ? location === "/" : location.startsWith(link.href);
+                return (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -107,8 +83,8 @@ export default function Navbar() {
                 <Instagram className="w-4 h-4" />
               </a>
               <button
-                onClick={handleEstimatorClick}
-                className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 blue-glow-sm hover:blue-glow"
+                onClick={handleDiagnosticClick}
+                className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 blue-glow-sm"
                 data-testid="btn-book-diagnostic"
               >
                 Book Diagnostic
@@ -145,7 +121,7 @@ export default function Navbar() {
               style={{ background: "#121214", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
               data-testid="mobile-menu"
             >
-              <div className="flex items-center justify-between p-5">
+              <div className="flex items-center justify-between p-5 border-b border-zinc-800/60">
                 <div className="flex items-center gap-2.5">
                   <img src={logoImg} alt="Ultrofix" className="w-8 h-8 object-contain" />
                   <div className="flex flex-col leading-none">
@@ -160,7 +136,7 @@ export default function Navbar() {
                 </button>
               </div>
 
-              <div className="px-5 py-4 flex flex-col gap-1">
+              <div className="px-4 py-5 flex flex-col gap-1">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
@@ -168,24 +144,18 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.06 }}
                   >
-                    {link.href.startsWith("/#") ? (
-                      <button
-                        onClick={() => handleNavClick(link.href)}
-                        className="w-full text-left text-base font-medium text-zinc-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors"
-                        data-testid={`mobile-nav-${link.label.toLowerCase()}`}
-                      >
-                        {link.label}
-                      </button>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        onClick={() => setMenuOpen(false)}
-                        className="block text-base font-medium text-zinc-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors"
-                        data-testid={`mobile-nav-${link.label.toLowerCase()}`}
-                      >
-                        {link.label}
-                      </Link>
-                    )}
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className={`block text-base font-medium py-3 px-4 rounded-lg transition-colors ${
+                        (link.href === "/" ? location === "/" : location.startsWith(link.href))
+                          ? "text-white bg-blue-600/10"
+                          : "text-zinc-300 hover:text-white hover:bg-white/5"
+                      }`}
+                      data-testid={`mobile-nav-${link.label.toLowerCase()}`}
+                    >
+                      {link.label}
+                    </Link>
                   </motion.div>
                 ))}
 
@@ -196,7 +166,7 @@ export default function Navbar() {
                   className="flex flex-col gap-3 mt-4 pt-4 border-t border-zinc-800"
                 >
                   <button
-                    onClick={handleEstimatorClick}
+                    onClick={handleDiagnosticClick}
                     className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-lg transition-colors blue-glow-sm"
                     data-testid="mobile-btn-book-diagnostic"
                   >
@@ -206,11 +176,11 @@ export default function Navbar() {
                     href="https://www.instagram.com/ultrofixtechservices/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-zinc-400 hover:text-pink-400 text-sm transition-colors"
+                    className="flex items-center justify-center gap-2 text-zinc-500 hover:text-pink-400 text-sm transition-colors py-2"
                     data-testid="mobile-link-instagram"
                   >
                     <Instagram className="w-4 h-4" />
-                    Follow on Instagram
+                    @ultrofixtechservices
                   </a>
                 </motion.div>
               </div>

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { MessageCircle, CheckCircle, Clock, IndianRupee, ArrowRight } from "lucide-react";
+import { MessageCircle, CheckCircle, Clock, IndianRupee, Phone } from "lucide-react";
+
+const MAPS_URL = "https://www.google.com/maps/place/Ultrofix+Tech+Services/@23.1024312,72.5329652,17z/data=!3m1!4b1!4m6!3m5!1s0x395e8304b4e69697:0x3eee29f5539bd4d!8m2!3d23.1024263!4d72.5355401!16s%2Fg%2F11n55g3qkb?entry=ttu";
 import chipRepairImg from "@assets/chip-repair_1778906676921.jpg";
 import deviceCloseupImg from "@assets/home-showcase-device-closeup-portrait_1778906676926.jpg";
 import mobileRepairImg from "@assets/mobile-repair_1778906676931.jpg";
@@ -117,25 +119,33 @@ export default function ServicesPage() {
             <p className="text-zinc-400 text-base max-w-xl mx-auto mb-8">
               From chip-level motherboard repairs to custom PC builds — transparent pricing, professional tools, genuine parts.
             </p>
-            <a
-              href="#estimator"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/#estimator";
-              }}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-5 py-3 rounded-xl text-sm transition-all blue-glow-sm"
-            >
-              Get Instant Estimate
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="https://wa.me/917878433566?text=Hi+Ultrofix%2C+I+would+like+a+free+diagnostic+check+and+repair+estimate+for+my+device."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110"
+                style={{ background: "#25D366", boxShadow: "0 0 16px rgba(37,211,102,0.2)" }}
+              >
+                <MessageCircle className="w-4 h-4" />
+                Get Free Diagnostic
+              </a>
+              <a
+                href="tel:+917878433566"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-700 hover:border-blue-500 text-zinc-300 hover:text-white font-semibold text-sm transition-all"
+              >
+                <Phone className="w-4 h-4" />
+                Call Us
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Main Services */}
-      <section className="py-20" style={{ background: "#0F0F11" }}>
+      <section className="py-14" style={{ background: "#0F0F11" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-16">
+          <div className="space-y-12">
             {servicesList.map((service, i) => (
               <motion.div
                 key={service.id}

@@ -53,7 +53,7 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
 
 export default function About() {
   return (
-    <section id="about" className="py-24" style={{ background: "#0F0F11" }}>
+    <section id="about" className="py-16" style={{ background: "#0F0F11" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left content */}

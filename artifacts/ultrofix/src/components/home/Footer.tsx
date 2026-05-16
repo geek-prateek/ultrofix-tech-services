@@ -1,30 +1,24 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink, Instagram } from "lucide-react";
 import { Link } from "wouter";
-import logoImg from "@assets/Logo_1778906496305.png";
+import logoImg from "@assets/Logo-removebg-preview_1778909529329.png";
+
+const MAPS_URL = "https://www.google.com/maps/place/Ultrofix+Tech+Services/@23.1024312,72.5329652,17z/data=!3m1!4b1!4m6!3m5!1s0x395e8304b4e69697:0x3eee29f5539bd4d!8m2!3d23.1024263!4d72.5355401!16s%2Fg%2F11n55g3qkb?entry=ttu";
 
 export default function Footer() {
-  const handleScrollLink = (id: string) => {
-    if (window.location.pathname === "/") {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = `/#${id}`;
-    }
-  };
-
   return (
     <footer
       id="contact"
       className="border-t border-white/8 pb-20 md:pb-0"
       style={{ background: "#0A0A0C" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -37,20 +31,19 @@ export default function Footer() {
                 <span className="text-zinc-500 text-[9px] font-medium tracking-widest uppercase">Tech Services</span>
               </div>
             </div>
-            <p className="text-blue-400 text-xs font-semibold mb-4 tracking-wide">Your Tech Repair Expert</p>
-            <p className="text-zinc-500 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-blue-400 text-xs font-semibold mb-3 tracking-wide">Your Tech Repair Expert</p>
+            <p className="text-zinc-500 text-sm leading-relaxed mb-5 max-w-xs">
               Ahmedabad's most trusted chip-level repair specialists. Professional tools,
               genuine parts, and transparent pricing — every time.
             </p>
 
-            {/* Hours */}
-            <div className="flex items-center gap-2 text-zinc-400 text-sm mb-5">
+            <div className="flex items-center gap-2 text-zinc-400 text-sm mb-4">
               <Clock className="w-4 h-4 text-blue-400 shrink-0" />
               <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
             </div>
 
-            {/* Social links */}
-            <div className="flex items-center gap-3 mb-6">
+            {/* Social */}
+            <div className="flex items-center gap-3 mb-5">
               <a
                 href="https://www.instagram.com/ultrofixtechservices/"
                 target="_blank"
@@ -72,7 +65,6 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Quick WhatsApp CTA */}
             <a
               href="https://wa.me/917878433566?text=Hi%2C+I+need+device+support+from+Ultrofix+Tech+Services"
               target="_blank"
@@ -86,12 +78,12 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="font-montserrat font-bold text-white text-sm uppercase tracking-widest mb-5">
+            <h4 className="font-montserrat font-bold text-white text-sm uppercase tracking-widest mb-4">
               Contact
             </h4>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <a
                 href="mailto:Ultrofixtechservices@gmail.com"
                 className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors"
@@ -118,26 +110,26 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Quick nav */}
-            <div className="mt-8 space-y-2">
+            <div className="mt-7">
               <p className="text-zinc-600 text-xs font-semibold uppercase tracking-widest mb-3">Quick Links</p>
-              <Link href="/" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">Home</Link>
-              <Link href="/services" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">Services</Link>
-              <Link href="/about" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">About Us</Link>
-              <button onClick={() => handleScrollLink("reviews")} className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors text-left">Reviews</button>
+              <div className="space-y-2">
+                <Link href="/" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">Home</Link>
+                <Link href="/services" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">Services</Link>
+                <Link href="/about" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">About Us</Link>
+              </div>
             </div>
           </div>
 
-          {/* Address */}
+          {/* Location */}
           <div>
-            <h4 className="font-montserrat font-bold text-white text-sm uppercase tracking-widest mb-5">
+            <h4 className="font-montserrat font-bold text-white text-sm uppercase tracking-widest mb-4">
               Location
             </h4>
             <a
-              href="https://maps.google.com/?q=Shaligram+Square+Gota+Ahmedabad"
+              href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors mb-5"
+              className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors mb-4"
               data-testid="link-address"
             >
               <MapPin className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
@@ -147,7 +139,7 @@ export default function Footer() {
               </span>
             </a>
             <a
-              href="https://maps.google.com/?q=Shaligram+Square+Gota+Ahmedabad"
+              href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 text-xs font-semibold transition-colors"
@@ -157,13 +149,11 @@ export default function Footer() {
               Open in Google Maps
             </a>
 
-            {/* Instagram CTA */}
             <a
               href="https://www.instagram.com/ultrofixtechservices/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 flex items-center gap-2 text-zinc-400 hover:text-pink-400 text-sm transition-colors"
-              data-testid="link-instagram-location"
+              className="mt-5 flex items-center gap-2 text-zinc-500 hover:text-pink-400 text-sm transition-colors"
             >
               <Instagram className="w-4 h-4" />
               @ultrofixtechservices

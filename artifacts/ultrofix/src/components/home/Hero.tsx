@@ -3,6 +3,8 @@ import { MapPin, Star, Phone } from "lucide-react";
 import heroPortrait from "@assets/home-hero-repair-portrait_1778906676922.jpg";
 import animatedPerson from "@assets/animated_1778906676919.jpg";
 
+const MAPS_URL = "https://www.google.com/maps/place/Ultrofix+Tech+Services/@23.1024312,72.5329652,17z/data=!3m1!4b1!4m6!3m5!1s0x395e8304b4e69697:0x3eee29f5539bd4d!8m2!3d23.1024263!4d72.5355401!16s%2Fg%2F11n55g3qkb?entry=ttu";
+
 export default function Hero() {
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -94,7 +96,7 @@ export default function Hero() {
                 Free Problem Diagnostic
               </button>
               <a
-                href="https://maps.google.com/?q=Shaligram+Square+Gota+Ahmedabad"
+                href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border border-zinc-700 hover:border-blue-500 text-zinc-300 hover:text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:bg-blue-500/10 text-sm"
@@ -113,7 +115,7 @@ export default function Hero() {
               className="flex flex-col gap-2 mb-10"
             >
               <a
-                href="https://maps.google.com/?q=Shaligram+Square+Gota+Ahmedabad"
+                href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-2 text-zinc-500 hover:text-zinc-400 text-xs transition-colors"

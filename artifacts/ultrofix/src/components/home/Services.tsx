@@ -99,7 +99,7 @@ const cardVariants = {
 
 export default function Services() {
   return (
-    <section id="services" className="py-24" style={{ background: "#121214" }}>
+    <section id="services" className="py-16" style={{ background: "#121214" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -107,7 +107,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <div className="inline-flex items-center gap-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
             Expert Services
