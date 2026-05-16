@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/ultrofix run build",
-  "outputDirectory": "artifacts/ultrofix/dist/public",
+  "outputDirectory": "artifacts/ultrofix/dist",
   "installCommand": "pnpm install",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
