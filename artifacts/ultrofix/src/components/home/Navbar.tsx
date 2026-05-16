@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import logoImg from "@assets/Logo-removebg-preview_1778909529329.png";
+import logoImg from "@assets/Logo-hd.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -39,11 +39,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5" data-testid="navbar-logo">
-              <div className="w-9 h-9 flex items-center justify-center">
-                <img src={logoImg} alt="Ultrofix Logo" className="w-full h-full object-contain" />
+            <Link href="/" className="flex items-center gap-3 sm:gap-4" data-testid="navbar-logo">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center shrink-0">
+                <img src={logoImg} alt="Ultrofix Logo" className="w-full h-full object-contain scale-125" />
               </div>
-              <div className="flex flex-col leading-none">
+              <div className="flex flex-col leading-none mt-1">
                 <span className="font-montserrat font-black text-lg text-white tracking-tight">
                   Ultro<span className="text-blue-400">fix</span>
                 </span>
@@ -122,9 +122,11 @@ export default function Navbar() {
               data-testid="mobile-menu"
             >
               <div className="flex items-center justify-between p-5 border-b border-zinc-800/60">
-                <div className="flex items-center gap-2.5">
-                  <img src={logoImg} alt="Ultrofix" className="w-8 h-8 object-contain" />
-                  <div className="flex flex-col leading-none">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src={logoImg} alt="Ultrofix" className="w-full h-full object-contain scale-125" />
+                  </div>
+                  <div className="flex flex-col leading-none mt-0.5">
                     <span className="font-montserrat font-black text-white text-base">
                       Ultro<span className="text-blue-400">fix</span>
                     </span>
@@ -147,11 +149,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className={`block text-base font-medium py-3 px-4 rounded-lg transition-colors ${
-                        (link.href === "/" ? location === "/" : location.startsWith(link.href))
-                          ? "text-white bg-blue-600/10"
-                          : "text-zinc-300 hover:text-white hover:bg-white/5"
-                      }`}
+                      className={`block text-base font-medium py-3 px-4 rounded-lg transition-colors ${(link.href === "/" ? location === "/" : location.startsWith(link.href))
+                        ? "text-white bg-blue-600/10"
+                        : "text-zinc-300 hover:text-white hover:bg-white/5"
+                        }`}
                       data-testid={`mobile-nav-${link.label.toLowerCase()}`}
                     >
                       {link.label}

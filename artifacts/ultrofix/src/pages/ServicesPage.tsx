@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle, Clock, IndianRupee, Phone } from "lucide-react";
 
 const MAPS_URL = "https://www.google.com/maps/place/Ultrofix+Tech+Services/@23.1024312,72.5329652,17z/data=!3m1!4b1!4m6!3m5!1s0x395e8304b4e69697:0x3eee29f5539bd4d!8m2!3d23.1024263!4d72.5355401!16s%2Fg%2F11n55g3qkb?entry=ttu";
-import chipRepairImg from "@assets/chip-repair_1778906676921.jpg";
-import deviceCloseupImg from "@assets/home-showcase-device-closeup-portrait_1778906676926.jpg";
-import mobileRepairImg from "@assets/mobile-repair_1778906676931.jpg";
-import shopInteriorImg from "@assets/home-showcase-shop-interior_1778906676929.jpg";
-import brandsImg from "@assets/supported-brands_1778906676932.jpg";
+import chipRepairImg from "@assets/chip-repair.png";
+import deviceCloseupImg from "@assets/home-showcase-device-closeup.png";
+import mobileRepairImg from "@assets/mobile-repair.png";
+import shopInteriorImg from "@assets/home-showcase-shop-interior.png";
+import brandsImg from "@assets/supported-brands.png";
 
 const servicesList = [
   {

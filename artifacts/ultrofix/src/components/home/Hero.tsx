@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Star, Phone } from "lucide-react";
-import heroPortrait from "@assets/home-hero-repair-portrait_1778906676922.jpg";
+import heroPortrait from "@assets/home-showcase-shop-interior.png";
 import animatedPerson from "@assets/animated_1778906676919.jpg";
 
 const MAPS_URL = "https://www.google.com/maps/place/Ultrofix+Tech+Services/@23.1024312,72.5329652,17z/data=!3m1!4b1!4m6!3m5!1s0x395e8304b4e69697:0x3eee29f5539bd4d!8m2!3d23.1024263!4d72.5355401!16s%2Fg%2F11n55g3qkb?entry=ttu";

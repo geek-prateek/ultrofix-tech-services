@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink, Instagram } from "lucide-react";
 import { Link } from "wouter";
-import logoImg from "@assets/Logo-removebg-preview_1778909529329.png";
+import logoImg from "@assets/Logo-hd.png";
 
 const MAPS_URL = "https://www.google.com/maps/place/Ultrofix+Tech+Services/@23.1024312,72.5329652,17z/data=!3m1!4b1!4m6!3m5!1s0x395e8304b4e69697:0x3eee29f5539bd4d!8m2!3d23.1024263!4d72.5355401!16s%2Fg%2F11n55g3qkb?entry=ttu";
 
@@ -22,9 +22,11 @@ export default function Footer() {
         >
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5 mb-2">
-              <img src={logoImg} alt="Ultrofix" className="w-9 h-9 object-contain" />
-              <div className="flex flex-col leading-none">
+            <div className="flex items-center gap-3 sm:gap-4 mb-2">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center shrink-0">
+                <img src={logoImg} alt="Ultrofix" className="w-full h-full object-contain scale-125" />
+              </div>
+              <div className="flex flex-col leading-none mt-1">
                 <span className="font-montserrat font-black text-xl text-white">
                   Ultro<span className="text-blue-400">fix</span>
                 </span>
@@ -39,7 +41,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-2 text-zinc-400 text-sm mb-4">
               <Clock className="w-4 h-4 text-blue-400 shrink-0" />
-              <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
+              <span>Mon – Sat: 10:00 AM – 9:30 PM</span>
             </div>
 
             {/* Social */}
@@ -171,7 +173,7 @@ export default function Footer() {
           <p className="text-zinc-700 text-xs">
             Developed by{" "}
             <a
-              href="https://www.linkedin.com/in/geekprateek/"
+              href="https://aws-portfolio-chi.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-500 hover:text-blue-400 transition-colors font-medium underline underline-offset-2"

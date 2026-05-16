@@ -3,9 +3,12 @@ import { motion } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import chipRepairImg from "@assets/chip-repair_1778906676921.jpg";
-import deviceCloseupImg from "@assets/home-showcase-device-closeup-portrait_1778906676926.jpg";
-import mobileRepairImg from "@assets/mobile-repair_1778906676931.jpg";
+import motherboardImg from "@assets/motherboard-analysis.png";
+import statusValidationImg from "@assets/status-validation.png";
+import voltageVerifyImg from "@assets/voltage-verification.png";
+import video1 from "@assets/Contact_for_laptop_&_computer_repair_services_in_gota_ahmedaba_1778906689606.mp4";
+import video2 from "@assets/home-showcase-repair-vertical_1778906689608.mp4";
+import video3 from "@assets/Contact_for_laptop_repair_services_in_gota_--_+917878433566,+9_1778906689607.mp4";
 
 const reviews = [
   {
@@ -52,25 +55,25 @@ const reviews = [
 
 const galleryItems = [
   {
-    id: "chip-repair",
-    title: "Chip-Level Repair",
-    subtitle: "Motherboard micro-soldering",
-    image: chipRepairImg,
-    videoSrc: "@assets/Contact_for_laptop_&_computer_repair_services_in_gota_ahmedaba_1778906689606.mp4",
+    id: "motherboard-analysis",
+    title: "Architecture Inspection",
+    subtitle: "Core circuit board diagnostics",
+    image: motherboardImg,
+    videoSrc: video1,
   },
   {
-    id: "device-closeup",
-    title: "Component Work",
-    subtitle: "Precision hardware servicing",
-    image: deviceCloseupImg,
-    videoSrc: "@assets/home-showcase-repair-vertical_1778906689608.mp4",
+    id: "power-diagnostics",
+    title: "Voltage Verification",
+    subtitle: "Systematic power supply testing",
+    image: voltageVerifyImg,
+    videoSrc: video2,
   },
   {
-    id: "mobile-repair",
-    title: "Mobile Repair",
-    subtitle: "iPhone & Android service",
-    image: mobileRepairImg,
-    videoSrc: "@assets/Contact_for_laptop_repair_services_in_gota_--_+917878433566,+9_1778906689607.mp4",
+    id: "internal-indicators",
+    title: "Status Validation",
+    subtitle: "Internal LED telemetry check",
+    image: statusValidationImg,
+    videoSrc: video3,
   },
 ];
 
@@ -219,27 +222,38 @@ export default function Reviews() {
                 data-testid={`gallery-card-${item.id}`}
                 onClick={() => setActiveVideo(activeVideo === item.id ? null : item.id)}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {activeVideo === item.id ? (
+                  <video
+                    src={item.videoSrc}
+                    autoPlay
+                    controls
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h4 className="font-montserrat font-bold text-white text-base">{item.title}</h4>
-                  <p className="text-zinc-400 text-xs mt-0.5">{item.subtitle}</p>
-                  <p className="text-zinc-600 text-[10px] mt-2">@ultrofixtechservices</p>
-                </div>
+                    {/* Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <h4 className="font-montserrat font-bold text-white text-base">{item.title}</h4>
+                      <p className="text-zinc-400 text-xs mt-0.5">{item.subtitle}</p>
+                      <p className="text-zinc-600 text-[10px] mt-2">@ultrofixtechservices</p>
+                    </div>
 
-                {/* Play button overlay on hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                    <Play className="w-6 h-6 text-white fill-white ml-0.5" />
-                  </div>
-                </div>
+                    {/* Play button overlay on hover */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                        <Play className="w-6 h-6 text-white fill-white ml-0.5" />
+                      </div>
+                    </div>
+                  </>
+                )}
               </motion.div>
             ))}
           </div>
