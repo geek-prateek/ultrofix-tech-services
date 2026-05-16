@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Zap, MessageCircle, Clock, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Clock, ExternalLink, Instagram } from "lucide-react";
+import { Link } from "wouter";
+import logoImg from "@assets/Logo_1778906496305.png";
 
 export default function Footer() {
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleScrollLink = (id: string) => {
+    if (window.location.pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
   };
 
   return (
@@ -22,28 +28,53 @@ export default function Footer() {
         >
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center blue-glow-sm">
-                <Zap className="w-4 h-4 text-white fill-white" />
+            <div className="flex items-center gap-2.5 mb-2">
+              <img src={logoImg} alt="Ultrofix" className="w-9 h-9 object-contain" />
+              <div className="flex flex-col leading-none">
+                <span className="font-montserrat font-black text-xl text-white">
+                  Ultro<span className="text-blue-400">fix</span>
+                </span>
+                <span className="text-zinc-500 text-[9px] font-medium tracking-widest uppercase">Tech Services</span>
               </div>
-              <span className="font-montserrat font-black text-xl text-white">
-                Ultro<span className="text-blue-500">fix</span>
-              </span>
             </div>
+            <p className="text-blue-400 text-xs font-semibold mb-4 tracking-wide">Your Tech Repair Expert</p>
             <p className="text-zinc-500 text-sm leading-relaxed mb-6 max-w-xs">
               Ahmedabad's most trusted chip-level repair specialists. Professional tools,
               genuine parts, and transparent pricing — every time.
             </p>
 
             {/* Hours */}
-            <div className="flex items-center gap-2 text-zinc-400 text-sm mb-6">
+            <div className="flex items-center gap-2 text-zinc-400 text-sm mb-5">
               <Clock className="w-4 h-4 text-blue-400 shrink-0" />
               <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
             </div>
 
-            {/* Quick WhatsApp */}
+            {/* Social links */}
+            <div className="flex items-center gap-3 mb-6">
+              <a
+                href="https://www.instagram.com/ultrofixtechservices/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-pink-400 hover:border-pink-500/40 transition-all"
+                data-testid="link-instagram-footer"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://wa.me/917878433566"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-green-400 hover:border-green-500/40 transition-all"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Quick WhatsApp CTA */}
             <a
-              href="https://wa.me/917878433566?text=Hi%2C+I+need+device+support"
+              href="https://wa.me/917878433566?text=Hi%2C+I+need+device+support+from+Ultrofix+Tech+Services"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold text-sm text-white transition-all hover:brightness-110"
@@ -63,13 +94,12 @@ export default function Footer() {
             <div className="space-y-4">
               <a
                 href="mailto:Ultrofixtechservices@gmail.com"
-                className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors group"
+                className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors"
                 data-testid="link-email"
               >
                 <Mail className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
                 <span className="text-sm break-all">Ultrofixtechservices@gmail.com</span>
               </a>
-
               <a
                 href="tel:+917878433566"
                 className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors"
@@ -78,7 +108,6 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-blue-400 shrink-0" />
                 <span className="text-sm">+91 78784 33566</span>
               </a>
-
               <a
                 href="tel:+918400025112"
                 className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors"
@@ -88,9 +117,18 @@ export default function Footer() {
                 <span className="text-sm">+91 84000 25112</span>
               </a>
             </div>
+
+            {/* Quick nav */}
+            <div className="mt-8 space-y-2">
+              <p className="text-zinc-600 text-xs font-semibold uppercase tracking-widest mb-3">Quick Links</p>
+              <Link href="/" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">Home</Link>
+              <Link href="/services" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">Services</Link>
+              <Link href="/about" className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors">About Us</Link>
+              <button onClick={() => handleScrollLink("reviews")} className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors text-left">Reviews</button>
+            </div>
           </div>
 
-          {/* Address + Links */}
+          {/* Address */}
           <div>
             <h4 className="font-montserrat font-bold text-white text-sm uppercase tracking-widest mb-5">
               Location
@@ -99,7 +137,7 @@ export default function Footer() {
               href="https://maps.google.com/?q=Shaligram+Square+Gota+Ahmedabad"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors mb-5 group"
+              className="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors mb-5"
               data-testid="link-address"
             >
               <MapPin className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
@@ -108,7 +146,6 @@ export default function Footer() {
                 Gota, Ahmedabad, Gujarat 382481
               </span>
             </a>
-
             <a
               href="https://maps.google.com/?q=Shaligram+Square+Gota+Ahmedabad"
               target="_blank"
@@ -120,34 +157,38 @@ export default function Footer() {
               Open in Google Maps
             </a>
 
-            {/* Nav quick links */}
-            <div className="mt-6 space-y-2">
-              {["Services", "About", "Reviews"].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollTo(item.toLowerCase())}
-                  className="block text-zinc-500 hover:text-zinc-300 text-sm transition-colors"
-                  data-testid={`footer-nav-${item.toLowerCase()}`}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
+            {/* Instagram CTA */}
+            <a
+              href="https://www.instagram.com/ultrofixtechservices/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 flex items-center gap-2 text-zinc-400 hover:text-pink-400 text-sm transition-colors"
+              data-testid="link-instagram-location"
+            >
+              <Instagram className="w-4 h-4" />
+              @ultrofixtechservices
+            </a>
           </div>
         </motion.div>
       </div>
 
       {/* Bottom bar */}
-      <div
-        className="border-t border-white/5"
-        style={{ background: "#070709" }}
-      >
+      <div className="border-t border-white/5" style={{ background: "#070709" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-zinc-600 text-xs">
-            &copy; 2025 Ultrofix Tech Services. All rights reserved.
+            &copy; 2025 Ultrofix Tech Services. All rights reserved. | Gota, Ahmedabad, Gujarat
           </p>
           <p className="text-zinc-700 text-xs">
-            Gota, Ahmedabad, Gujarat
+            Developed by{" "}
+            <a
+              href="https://www.linkedin.com/in/geekprateek/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-500 hover:text-blue-400 transition-colors font-medium underline underline-offset-2"
+              data-testid="link-developer-credit"
+            >
+              Prateek Kumar
+            </a>
           </p>
         </div>
       </div>

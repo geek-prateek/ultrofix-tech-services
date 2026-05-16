@@ -1,15 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Play, Cpu, Monitor, Wrench } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import chipRepairImg from "@assets/chip-repair_1778906676921.jpg";
+import deviceCloseupImg from "@assets/home-showcase-device-closeup-portrait_1778906676926.jpg";
+import mobileRepairImg from "@assets/mobile-repair_1778906676931.jpg";
 
 const reviews = [
   {
     id: 1,
     name: "Kaushal Mahto",
     location: "Gota",
-    text: "Probably the best computer and laptop repair shop nearby the Gota area, highly recommend.",
+    text: "Probably the best computer and laptop repair shop nearby the Gota area, highly recommend. Good work.",
     stars: 5,
     source: "Google Review",
   },
@@ -49,31 +52,25 @@ const reviews = [
 
 const galleryItems = [
   {
-    id: "motherboard",
-    title: "Motherboard Repair",
-    subtitle: "Chip-level micro-soldering",
-    gradient: "from-blue-900/60 to-blue-600/20",
-    borderColor: "border-blue-500/30",
-    Icon: Cpu,
-    iconColor: "text-blue-400",
+    id: "chip-repair",
+    title: "Chip-Level Repair",
+    subtitle: "Motherboard micro-soldering",
+    image: chipRepairImg,
+    videoSrc: "@assets/Contact_for_laptop_&_computer_repair_services_in_gota_ahmedaba_1778906689606.mp4",
   },
   {
-    id: "screen",
-    title: "Screen Replacement",
-    subtitle: "Crystal clear results",
-    gradient: "from-violet-900/60 to-purple-600/20",
-    borderColor: "border-purple-500/30",
-    Icon: Monitor,
-    iconColor: "text-purple-400",
+    id: "device-closeup",
+    title: "Component Work",
+    subtitle: "Precision hardware servicing",
+    image: deviceCloseupImg,
+    videoSrc: "@assets/home-showcase-repair-vertical_1778906689608.mp4",
   },
   {
-    id: "gaming-pc",
-    title: "Gaming PC Build",
-    subtitle: "Performance optimized",
-    gradient: "from-emerald-900/60 to-green-600/20",
-    borderColor: "border-emerald-500/30",
-    Icon: Wrench,
-    iconColor: "text-emerald-400",
+    id: "mobile-repair",
+    title: "Mobile Repair",
+    subtitle: "iPhone & Android service",
+    image: mobileRepairImg,
+    videoSrc: "@assets/Contact_for_laptop_repair_services_in_gota_--_+917878433566,+9_1778906689607.mp4",
   },
 ];
 
@@ -91,6 +88,7 @@ export default function Reviews() {
   const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [autoplayPlugin.current]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -175,18 +173,14 @@ export default function Reviews() {
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-
             {reviews.map((_, i) => (
               <button
                 key={i}
                 onClick={() => emblaApi?.scrollTo(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === selectedIndex ? "w-6 bg-blue-500" : "w-1.5 bg-zinc-700"
-                }`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === selectedIndex ? "w-6 bg-blue-500" : "w-1.5 bg-zinc-700"}`}
                 data-testid={`carousel-dot-${i}`}
               />
             ))}
-
             <button
               onClick={scrollNext}
               className="w-9 h-9 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white hover:border-blue-500 transition-colors"
@@ -197,7 +191,7 @@ export default function Reviews() {
           </div>
         </motion.div>
 
-        {/* Gallery — Tech In Action */}
+        {/* Gallery — Tech In Action with real images */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +203,7 @@ export default function Reviews() {
             <h3 className="font-montserrat font-black text-2xl sm:text-3xl text-white mb-2">
               Ultrofix In Action
             </h3>
-            <p className="text-zinc-500 text-sm">A glimpse of our bench work</p>
+            <p className="text-zinc-500 text-sm">A glimpse of our actual bench work</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -220,33 +214,31 @@ export default function Reviews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`group relative rounded-2xl border ${item.borderColor} overflow-hidden cursor-pointer ${i === 1 ? "sm:mt-8" : ""}`}
+                className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-zinc-800/60 ${i === 1 ? "sm:mt-8" : ""}`}
                 style={{ aspectRatio: "9/10" }}
                 data-testid={`gallery-card-${item.id}`}
+                onClick={() => setActiveVideo(activeVideo === item.id ? null : item.id)}
               >
-                {/* Gradient background */}
-                <div className={`absolute inset-0 bg-gradient-to-b ${item.gradient}`} />
-                <div className="absolute inset-0 circuit-bg opacity-30" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                    <item.Icon className={`w-8 h-8 ${item.iconColor}`} />
-                  </div>
-                  <h4 className="font-montserrat font-bold text-white text-lg text-center">{item.title}</h4>
-                  <p className="text-zinc-400 text-sm text-center mt-1">{item.subtitle}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h4 className="font-montserrat font-bold text-white text-base">{item.title}</h4>
+                  <p className="text-zinc-400 text-xs mt-0.5">{item.subtitle}</p>
+                  <p className="text-zinc-600 text-[10px] mt-2">@ultrofixtechservices</p>
                 </div>
 
-                {/* Play overlay on hover */}
+                {/* Play button overlay on hover */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center">
                     <Play className="w-6 h-6 text-white fill-white ml-0.5" />
                   </div>
-                </div>
-
-                {/* Bottom label */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="text-xs text-zinc-500 font-medium">@ultrofixtechservices</div>
                 </div>
               </motion.div>
             ))}

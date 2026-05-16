@@ -1,43 +1,71 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageCircle, Clock, IndianRupee } from "lucide-react";
+import { ChevronDown, MessageCircle, Clock, IndianRupee, Info, AlertCircle } from "lucide-react";
 
 const services = [
   {
     id: "formatting",
-    label: "Laptop System Formatting",
-    price: "₹500 – ₹800",
-    time: "2–4 Hours",
+    label: "Laptop System Formatting & OS Install",
+    price: "₹499 – ₹799",
+    time: "1 – 4 Hours",
+    note: "Price varies based on OS version, driver installation complexity, and whether data backup is required before formatting.",
+    isQuote: false,
   },
   {
     id: "motherboard",
     label: "Chip-Level Motherboard Repair",
-    price: "₹2,000+",
-    time: "3–7 Business Days",
+    price: "₹1,999 – ₹4,500+",
+    time: "24 – 72 Hours",
+    note: "Cost depends on the specific faulty IC, availability of donor board components, brand-specific parts, and depth of damage detected during diagnostic.",
+    isQuote: false,
   },
   {
     id: "screen",
     label: "Laptop Screen Replacement",
-    price: "₹2,500+",
-    time: "1–2 Business Days",
+    price: "₹1,999 – ₹5,999+",
+    time: "12 – 48 Hours",
+    note: "Screen replacement costs depend on panel type (TN/IPS/OLED), screen resolution, refresh rate, brand, and whether it's a touch-enabled display.",
+    isQuote: false,
   },
   {
     id: "data-recovery",
     label: "Data Recovery Service",
-    price: "₹1,500+",
-    time: "1–3 Business Days",
+    price: "Quote Post Free Diagnostic",
+    time: "3 – 5 Days (Diagnostic Dependent)",
+    note: "Data recovery pricing cannot be pre-estimated — it depends on type of failure (logical vs. physical), storage medium condition, and data volume. A free physical diagnostic is mandatory before any quotation.",
+    isQuote: true,
   },
   {
     id: "gaming-pc",
-    label: "Custom Gaming PC Build",
-    price: "Budget Based",
-    time: "5–10 Business Days",
+    label: "Custom & Gaming PC Build",
+    price: "Budget Based on Configuration",
+    time: "5 – 10 Business Days",
+    note: "Total cost is entirely dependent on your selected components (CPU, GPU, RAM, storage, cabinet, cooling). We provide expert guidance to build within your budget.",
+    isQuote: true,
   },
   {
     id: "apple",
     label: "iPhone & MacBook Expert Repair",
-    price: "₹800+",
-    time: "1–3 Business Days",
+    price: "₹799 – ₹8,999+",
+    time: "12 – 72 Hours",
+    note: "Apple device repairs vary significantly by model, issue type (screen, battery, logic board, charging port), and genuine part availability. MacBook chip-level repairs fall at the higher end.",
+    isQuote: false,
+  },
+  {
+    id: "battery",
+    label: "Battery Replacement (Laptop/Mobile)",
+    price: "₹799 – ₹2,999+",
+    time: "1 – 6 Hours",
+    note: "Battery costs differ based on cell type, device model, brand compatibility, and whether a genuine OEM cell or a high-quality compatible cell is used.",
+    isQuote: false,
+  },
+  {
+    id: "amc",
+    label: "AMC – Annual Maintenance Contract (Bulk)",
+    price: "Quote Based on System Count",
+    time: "Custom Schedule",
+    note: "AMC pricing is calculated based on number of systems, device types, service frequency, response time SLA, and your business location proximity.",
+    isQuote: true,
   },
 ];
 
@@ -47,8 +75,12 @@ export default function Estimator() {
 
   const selectedService = services.find((s) => s.id === selected);
 
+  const waMessage = selectedService
+    ? `Hi Ultrofix, I checked your estimate tool for "${selectedService.label}". I would like to bring my system in for a free diagnostic check to get an exact quotation.`
+    : "";
+
   const waLink = selectedService
-    ? `https://wa.me/917878433566?text=${encodeURIComponent(`Hi, I need help with: ${selectedService.label}`)}`
+    ? `https://wa.me/917878433566?text=${encodeURIComponent(waMessage)}`
     : "#";
 
   return (
@@ -66,13 +98,13 @@ export default function Estimator() {
         >
           <div className="inline-flex items-center gap-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
             <IndianRupee className="w-3 h-3" />
-            Instant Estimate
+            Repair Cost Estimator
           </div>
           <h2 className="font-montserrat font-black text-3xl sm:text-4xl text-white mb-4">
             Instant Repair Estimate
           </h2>
           <p className="text-zinc-500 text-base max-w-xl mx-auto">
-            Select your service to get an instant price range and time estimate — no surprises.
+            Get a transparent price range and turnaround estimate for your service — no hidden surprises.
           </p>
         </motion.div>
 
@@ -96,7 +128,7 @@ export default function Estimator() {
                 style={{ background: "#121214" }}
                 data-testid="btn-dropdown-toggle"
               >
-                <span className={selected ? "text-white" : "text-zinc-500"}>
+                <span className={selected ? "text-white text-sm" : "text-zinc-500 text-sm"}>
                   {selectedService ? selectedService.label : "Select a service to get an estimate..."}
                 </span>
                 <motion.div animate={{ rotate: dropdownOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -126,7 +158,10 @@ export default function Estimator() {
                         }`}
                         data-testid={`option-${service.id}`}
                       >
-                        {service.label}
+                        <span>{service.label}</span>
+                        {service.isQuote && (
+                          <span className="ml-2 text-[10px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded-full">Quote Based</span>
+                        )}
                       </button>
                     ))}
                   </motion.div>
@@ -144,8 +179,8 @@ export default function Estimator() {
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    {/* Price */}
+                  {/* Price + Time Grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-4">
                     <div
                       className="rounded-xl p-5 border border-blue-500/20"
                       style={{ background: "rgba(37,99,235,0.08)" }}
@@ -153,14 +188,13 @@ export default function Estimator() {
                     >
                       <div className="flex items-center gap-1.5 text-zinc-400 text-xs font-medium mb-2">
                         <IndianRupee className="w-3 h-3" />
-                        Estimated Price
+                        Estimated Price Range
                       </div>
-                      <div className="font-montserrat font-black text-2xl text-blue-400">
+                      <div className={`font-montserrat font-black text-blue-400 ${selectedService.isQuote ? "text-base leading-snug" : "text-2xl"}`}>
                         {selectedService.price}
                       </div>
                     </div>
 
-                    {/* Time */}
                     <div
                       className="rounded-xl p-5 border border-zinc-700/50"
                       style={{ background: "rgba(255,255,255,0.03)" }}
@@ -168,12 +202,24 @@ export default function Estimator() {
                     >
                       <div className="flex items-center gap-1.5 text-zinc-400 text-xs font-medium mb-2">
                         <Clock className="w-3 h-3" />
-                        Repair Time
+                        Estimated Turnaround
                       </div>
-                      <div className="font-montserrat font-bold text-xl text-white">
+                      <div className={`font-montserrat font-bold text-white ${selectedService.isQuote ? "text-sm leading-snug" : "text-xl"}`}>
                         {selectedService.time}
                       </div>
                     </div>
+                  </div>
+
+                  {/* Contextual Note */}
+                  <div
+                    className="flex items-start gap-3 rounded-xl p-4 mb-5 border border-amber-500/20"
+                    style={{ background: "rgba(245, 158, 11, 0.06)" }}
+                    data-testid="estimate-note"
+                  >
+                    <Info className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
+                    <p className="text-amber-300/80 text-xs leading-relaxed">
+                      {selectedService.note}
+                    </p>
                   </div>
 
                   {/* WhatsApp CTA */}
@@ -181,17 +227,13 @@ export default function Estimator() {
                     href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full py-4 rounded-xl font-semibold text-white text-base transition-all duration-200 hover:brightness-110 hover:scale-[1.01]"
+                    className="flex items-center justify-center gap-3 w-full py-4 rounded-xl font-semibold text-white text-base transition-all duration-200 hover:brightness-110 hover:scale-[1.01] mb-5"
                     style={{ background: "#25D366", boxShadow: "0 0 24px rgba(37, 211, 102, 0.3)" }}
                     data-testid="btn-whatsapp-book"
                   >
                     <MessageCircle className="w-5 h-5" />
                     Book This Repair via WhatsApp
                   </a>
-
-                  <p className="text-center text-zinc-600 text-xs mt-3">
-                    Prices are estimates. Final pricing after free diagnostic.
-                  </p>
                 </motion.div>
               ) : (
                 <motion.div
@@ -205,11 +247,25 @@ export default function Estimator() {
                     <IndianRupee className="w-6 h-6 text-blue-400" />
                   </div>
                   <p className="text-zinc-500 text-sm">
-                    Select a service above to see the estimated price and repair time.
+                    Select a service above to see the estimated price range and turnaround time.
                   </p>
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Permanent Disclaimer Footer */}
+            <div
+              className="flex items-start gap-3 rounded-xl p-4 border border-zinc-700/40 mt-2"
+              style={{ background: "rgba(255,255,255,0.02)" }}
+              data-testid="disclaimer-footer"
+            >
+              <AlertCircle className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+              <p className="text-zinc-500 text-xs leading-relaxed">
+                <span className="text-zinc-300 font-semibold">Note:</span> All price ranges and timelines are tentative.
+                Final exact calculations are provided only after a complimentary, zero-obligation physical system
+                diagnostic check at our Gota center.
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>
